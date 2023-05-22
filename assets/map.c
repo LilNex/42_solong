@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 00:37:48 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/05/22 01:52:26 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/05/22 22:52:06 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_map *init_map(int lines_count)
     map = ft_calloc(1, sizeof(t_map));
     if (!map)
         return (ft_error("Error while mallocing !"), NULL);
+    map->height = lines_count;
     map->map = ft_calloc(lines_count + 1, sizeof(char));
     map->count_c = 0;
     map->count_p = 0;
@@ -45,7 +46,7 @@ void update_counts(char *line, t_map *map)
     int i;
 
     i = 0;
-    while (line[i])
+    while (line[i] && i < map->width - 1)
     {
         if (line[i] == 'P')
             map->count_p++;
@@ -65,6 +66,7 @@ void load_lines(char *mapname, t_solong *utils)
     int     i;
 
     i = 0;
+    line = NULL;
     fd = open(mapname, O_RDONLY);
 	if (fd < 0)
 		ft_error("Error while opening the map");
@@ -72,14 +74,17 @@ void load_lines(char *mapname, t_solong *utils)
     while ((raw_line = get_next_line(fd)) != NULL)
     {
         if (line == NULL)
-            utils->map->width = ft_strlen(line) - 1;
+            utils->map->width = ft_strlen(raw_line) - 1;
         line = ft_strtrim(raw_line, "\n");
+        if (ft_strlen(line) != (size_t)utils->map->width)
+		    ft_error("Dimension of map is invalid");
+
         update_counts(line, utils->map);
-        utils->map->map[i++] = line;
+        utils->map->map[i] = line;
+        printf("adding line : %s\n",utils->map->map[0]);
+        i++;
     }
     validate_map(utils->map);
-    printf("map width : %d\n",utils->map->width);
-    printf("i: %d\n",i);
     
 
 

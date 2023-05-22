@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:22:54 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/05/22 01:02:12 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/05/22 22:17:46 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	load_map(char *name, t_solong *utils)
 	// if (fd < 0)
 	// 	ft_error("Error while opening the map");
 	utils->map = init_map(get_count_lines(name));
-    utils->map->height = get_count_lines(name);
+    // utils->map->height = get_count_lines(name);
 	load_lines(name, utils);
 
 }
