@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:25:13 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/05/30 19:03:24 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/05/30 19:09:24 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void    render_background(t_solong *utils)
 		{
 			if (utils->map->map[x][y])
 			mlx_put_image_to_window(utils->mlx, utils->mlx_window,
-				render_animation(utils->a_data->wall), (y*BLOCK_SIZE), (x*BLOCK_SIZE));
+				render_animation(utils->a_data->background), (y*BLOCK_SIZE), (x*BLOCK_SIZE));
 			y++;
 		}
 		x++;
@@ -96,7 +96,7 @@ void render_map(t_solong *utils)
 int render_window(t_solong *utils)
 {
 	mlx_clear_window(utils->mlx, utils->mlx_window);
-	// render_background(utils);
+	render_background(utils);
 	render_map(utils);
 	return (1);
 }

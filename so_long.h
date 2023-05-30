@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 15:49:07 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/05/30 16:21:33 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/05/30 19:15:07 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct	s_asset {
 }				t_asset;
 typedef struct s_assets_data{
 	t_asset	*wall;
+	t_asset	*background;
 	t_asset	*player;
 	t_asset	*exit;
 	t_asset	*enemy;
@@ -94,8 +95,8 @@ void 	load_lines(char *mapname, t_solong *utils);
 int		validate_map(t_map *map);
 t_list 	*load_xpm_file(t_solong *utils, char *path);
 
-void init_window(t_solong *utils);
-int render_window(t_solong *utils);
-int handle_press(int keycode, void* params);
-
+void 	init_window(t_solong *utils);
+int 	render_window(t_solong *utils);
+int 	handle_press(int keycode, void* params);
+void    render_background(t_solong *utils);
 #endif
