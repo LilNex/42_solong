@@ -1,28 +1,50 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
     "configurations": [
         {
-            "name": "(lldb) Launch",
-            "type": "cppdbg",
+            "name": "(gdb) Launch",
+            "type": "lldb",
             "request": "launch",
-            "program": "./so_long",
-            "args": ["*.c","libft/libft.a"],
+            "program": "${fileDirname}/so_long",
+            "args": [
+                "map1.ber"
+            ],
             "stopAtEntry": false,
-            "cwd": "./so_long.c",
+            "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb"
+            "MIMode": "lldb",
+            "preLaunchTask": "C/C++: gcc build active file",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
         },
+        
         {
-            "name": "(lldb) Attach",
+            "name": "C/C++: gcc build and debug active file",
             "type": "cppdbg",
-            "request": "attach",
-            "program": "enter program name, for example ${workspaceFolder}/a.out",
-            "MIMode": "lldb"
+            "request": "launch",
+            "program": "${fileDirname}/push_swap",
+            "args": [
+                "4 8 7 1 2",
+                // "51 84 5 4 87 94 15 41 10 1000"
+                // "484 11 4 51 54 848 994 984 97 7 984 516 613 2161984189 191 612 6 165 131 651 89 498 1651 231 8681 6189 988 84 16651651 894984 6131"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "C/C++: gcc build active file"
         }
-
-    ]
+    ],
+    "version": "2.0.0"
 }

@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 00:37:48 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/05/22 22:52:06 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/05/30 00:48:52 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ t_map *init_map(int lines_count)
 {
     t_map *map;
 
-    map = ft_calloc(1, sizeof(t_map));
+    map = malloc(1* sizeof(t_map));
     if (!map)
         return (ft_error("Error while mallocing !"), NULL);
     map->height = lines_count;
-    map->map = ft_calloc(lines_count + 1, sizeof(char));
+    map->map = ft_calloc((map->height + 1), sizeof(char*));
     map->count_c = 0;
     map->count_p = 0;
     map->count_e = 0;
@@ -63,6 +63,7 @@ void load_lines(char *mapname, t_solong *utils)
     int     fd;
     char    *raw_line;
     char    *line;
+    char    *tmp;
     int     i;
 
     i = 0;
@@ -70,22 +71,18 @@ void load_lines(char *mapname, t_solong *utils)
     fd = open(mapname, O_RDONLY);
 	if (fd < 0)
 		ft_error("Error while opening the map");
-
-    while ((raw_line = get_next_line(fd)) != NULL)
-    {
-        if (line == NULL)
-            utils->map->width = ft_strlen(raw_line) - 1;
-        line = ft_strtrim(raw_line, "\n");
-        if (ft_strlen(line) != (size_t)utils->map->width)
+    while ((raw_line = get_next_line(fd)) != NULL )
+    {   
+        tmp = ft_strtrim(raw_line, "\n");
+        if (i == 0)
+            utils->map->width = ft_strlen(tmp);
+        if (ft_strlen(tmp) != (size_t)utils->map->width)
 		    ft_error("Dimension of map is invalid");
-
-        update_counts(line, utils->map);
-        utils->map->map[i] = line;
-        printf("adding line : %s\n",utils->map->map[0]);
-        i++;
+        update_counts(tmp, utils->map);
+        utils->map->map[i++] = tmp;
+        free_ptr(raw_line);
     }
+    free_ptr(raw_line);
     validate_map(utils->map);
-    
-
 
 }

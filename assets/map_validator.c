@@ -6,20 +6,17 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 01:06:14 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/05/22 22:45:17 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/05/24 19:35:37 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int check_line(char *line)
+int check_line(const char *line)
 {
     size_t i;
     
     i = 0;
-    printf("line : %s\n", line);
-    printf("first : %c\n", line[0]);
-    printf("last : %c\n", line[ft_strlen(line)-1]);
     if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')
         return (ft_error("Map should be closed by walls"), 0);
     while (i < ft_strlen(line))
@@ -40,25 +37,21 @@ int check_walls(t_map *map)
     i = 0;
     y = 0;
     while (map->map[y] != NULL && y < map->height)
-    {
-        printf("chk : %s\n",map->map[0]);
         if (!check_line(map->map[y++]))
             return (0);
-        y++;
-    }
-    // i = 0;
-    // while (map->map[y][i])
-    //     if (map->map[0][i++] != '1')
-    //         return 0;
-    // i = 0;
-    while (map->map[map->height-1][i])
+    y = 0;
+    i = 0;
+    while (map->map[y][i])
         if (map->map[0][i++] != '1')
+            return 0;
+    i = 0;
+    while (map->map[map->height-1][i])
+        if (map->map[map->height-1][i++] != '1')
             return 0;
     
     
     return (1);
 }
-
 
 int validate_map(t_map *map)
 {
@@ -67,8 +60,6 @@ int validate_map(t_map *map)
         return (ft_error("Map is invalid"), 0);
     if (!check_walls(map))
         return (ft_error("Map walls are invalid"), 0);
-
-   
 
 
     return (1);

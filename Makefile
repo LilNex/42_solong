@@ -6,7 +6,7 @@
 #    By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 17:56:23 by ichaiq            #+#    #+#              #
-#    Updated: 2023/05/22 01:06:11 by ichaiq           ###   ########.fr        #
+#    Updated: 2023/05/30 01:12:27 by ichaiq           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SOURCES = so_long.c
 LIB = libft/libft.a
 GNL = gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c
 # GNL= gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c
-SRC = so_long.c assets/assets.c assets/map.c assets/map_validator.c
+SRC = so_long.c init.c gameplay.c assets/assets.c assets/map.c assets/map_validator.c
 	
 
 OBJECTS = $(SRC:.c=.o)
@@ -32,7 +32,7 @@ $(LIB):
 	make clean
 
 $(NAME) : $(OBJECTS) $(LIB) $(GNL)
-	$(CC) $(CFLAGS) $^ -o $@ 
+	$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $^ -o $@ 
 
 
 # build: so_long.h

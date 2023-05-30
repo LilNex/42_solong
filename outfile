@@ -1,0 +1,3 @@
+OBJECTS = $(SRC:.c=.o)
+$(NAME) : $(OBJECTS) $(LIB) $(GNL)
+	rm -f $(OBJECTS) $(BOBJECTS)
