@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 15:49:07 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/05/30 01:24:07 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/05/30 16:21:33 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,24 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+// typedef struct	s_asset {
+// 	void	*img;
+// 	char	*name;
+// 	int 	w;
+// 	int 	h;
+// 	char	*path;
+// }				t_asset;
+
 typedef struct	s_asset {
-	void	*img;
-	char	*name;
-	int 	w;
-	int 	h;
-	char	*path;
+	t_list	*img;
+	t_list 	*last_used;
 }				t_asset;
 typedef struct s_assets_data{
-	void	*wall;
-	void	*player;
-	void	*exit;
-	void	*enemy;
-	void	*collectible;
+	t_asset	*wall;
+	t_asset	*player;
+	t_asset	*exit;
+	t_asset	*enemy;
+	t_asset	*collectible;
 
 }				t_assets_data;
 
@@ -87,10 +92,10 @@ int		get_count_lines(char *name);
 t_map 	*init_map(int lines_count);
 void 	load_lines(char *mapname, t_solong *utils);
 int		validate_map(t_map *map);
-void 	*load_xpm_file(t_solong *utils, char *path);
+t_list 	*load_xpm_file(t_solong *utils, char *path);
 
 void init_window(t_solong *utils);
-void render_window(t_solong *utils);
+int render_window(t_solong *utils);
 int handle_press(int keycode, void* params);
 
 #endif

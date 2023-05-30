@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:22:54 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/05/30 01:24:31 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/05/30 14:06:17 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	load_map(char *name, t_solong *utils)
 {
-	int fd;
+	int	fd;
 
 	(void)utils;
 	fd = open(name, O_RDONLY);
@@ -25,29 +25,27 @@ void	load_map(char *name, t_solong *utils)
 
 }
 
-void *load_xpm_file(t_solong *utils, char *path)
+t_list	*load_xpm_file(t_solong *utils, char *path)
 {
-	int size;
-	
+	int		size;
+	void	*t;
+	puts("loading");
 	size = BLOCK_SIZE;
-	puts("before");
-
-	void *t = mlx_xpm_file_to_image(utils->mlx, path, &size, &size);
-	puts("after");
+	t = mlx_xpm_file_to_image(utils->mlx, path, &size, &size);
 	if (!t)
-		printf("Error while loading file\n");
-	return (t);
+		ft_error("Error while loading file\n");
+	return (ft_lstnew(t));
 }
 
-void*	load_assets(t_solong *utils)
+void	*load_assets(t_solong *utils)
 {
-	int fd;
+	int	fd;
+
 	fd = open(utils->map_name, O_RDONLY);
 	if (fd < 0)
 		ft_error("Error while opening the map");
 	if (!utils->map_name)
 		ft_error("Error on map name");
 	load_map(utils->map_name, utils);
-	
-	return NULL;
+	return (NULL);
 }
