@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 15:49:07 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/05/30 19:15:07 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/01 00:29:22 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <mlx.h>
 
 #define BLOCK_SIZE 64
+#define RANGE_ENEMY 3
 
 int	ft_error(char *s);
 
@@ -73,7 +74,9 @@ typedef struct s_solong{
 	t_assets_data 	*a_data;
 	void			*mlx;
 	void			*mlx_window;
+	char			*str_moves;
 	int 			c_collected;
+	int				moves;
 
 
 }				t_solong;
@@ -87,16 +90,21 @@ typedef struct s_position{
 
 
 // LOADERS
-void	*load_assets(t_solong *utils);
-void	load_map(char *name, t_solong *utils);
-int		get_count_lines(char *name);
-t_map 	*init_map(int lines_count);
-void 	load_lines(char *mapname, t_solong *utils);
-int		validate_map(t_map *map);
-t_list 	*load_xpm_file(t_solong *utils, char *path);
+void		*load_assets(t_solong *utils);
+void		load_map(char *name, t_solong *utils);
+int			get_count_lines(char *name);
+t_map 		*init_map(int lines_count);
+void 		load_lines(char *mapname, t_solong *utils);
+int			validate_map(t_map *map);
+t_list 		*load_xpm_file(t_solong *utils, char *path);
 
-void 	init_window(t_solong *utils);
-int 	render_window(t_solong *utils);
-int 	handle_press(int keycode, void* params);
-void    render_background(t_solong *utils);
+t_position 	*get_position(int x, int y);
+void 		init_window(t_solong *utils);
+int 		render_window(t_solong *utils);
+int 		handle_press(int keycode, void* params);
+void    	render_background(t_solong *utils);
+
+// t_position *search_nearest_enemy(t_solong *utils,t_position *p_pos);
+// void move_enemy(t_solong *utils,t_position	*p_pos);
+
 #endif

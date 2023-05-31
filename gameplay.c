@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 00:52:53 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/05/30 14:21:54 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/01 00:22:47 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ void	move_player(t_solong *utils, int x, int y)
 				ft_error("You hitted an enemy !");
 			
 			map[(p_pos->x) +x][(p_pos->y) +y] = 'P';
+			utils->moves++;
 		}
+		// move_enemy(utils, p_pos);
 	}
 }
 
