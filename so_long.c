@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 17:59:15 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/01 00:00:19 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/02 17:42:31 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int main(int ac, char **av)
 {
 	t_solong	*s_utils;
 	(void)av;
+	// int x,y;
 	// atexit(f);
 	s_utils = ft_calloc(1, sizeof(t_solong));
 	if (ac >= 1)
@@ -49,7 +50,10 @@ int main(int ac, char **av)
 		render_window(s_utils);
 		// render_moves(s_utils);
 		mlx_key_hook(s_utils->mlx_window, handle_press, s_utils);
-		// mlx_loop_hook(s_utils->mlx,render_window,s_utils);
+		// mlx_get_screen_size(s_utils->mlx_window,&x,&y);
+		// printf("screen %d %d\n",x,y);
+		// mlx_do_key_autorepeaton(s_utils->mlx);
+		mlx_loop_hook(s_utils->mlx,render_window,s_utils);
 		mlx_loop(s_utils->mlx);
 		
 	}

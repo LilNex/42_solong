@@ -6,7 +6,7 @@
 #    By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 17:56:23 by ichaiq            #+#    #+#              #
-#    Updated: 2023/05/30 19:00:32 by ichaiq           ###   ########.fr        #
+#    Updated: 2023/06/07 16:35:59 by ichaiq           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,13 @@ SOURCES = so_long.c
 LIB = libft/libft.a
 GNL = gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c
 # GNL= gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c
-SRC = so_long.c init.c gameplay.c render.c assets/assets.c assets/map.c assets/map_validator.c
+SRC = so_long.c init.c gameplay.c bots.c render.c assets/assets.c assets/map.c assets/map_validator.c
 	
 
 OBJECTS = $(SRC:.c=.o)
 
 CC = cc
-CFLAGS += -Wall -Wextra -Werror -g
+CFLAGS += -Wall -Wextra -Werror -g -fsanitize=address
 
 all: $(NAME) so_long.h
 

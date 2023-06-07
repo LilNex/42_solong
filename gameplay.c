@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 00:52:53 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/01 00:22:47 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/02 17:37:58 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ t_position *get_player_position(t_solong *utils)
 	}
 	return NULL;
 }
-
+void	handle_exit(t_solong *utils)
+{
+	if (utils->map->count_c == utils->c_collected)
+		ft_error("Exit");
+}
 void	move_player(t_solong *utils, int x, int y)
 {
 	t_position	*p_pos;
@@ -55,13 +59,14 @@ void	move_player(t_solong *utils, int x, int y)
 	map = utils->map->map;
 	if (map[p_pos->x][p_pos->y] == 'P')
 	{
-		if (map[(p_pos->x) + x][(p_pos->y) + y] != '1')
+		if (map[(p_pos->x) +x][(p_pos->y) +y] == 'E')
+			handle_exit(utils);
+		else if (map[(p_pos->x) + x][(p_pos->y) + y] != '1')
 		{
 			map[(p_pos->x)][(p_pos->y)] = '0';
 			if (map[(p_pos->x) + x][(p_pos->y) + y] == 'C')
 				utils->c_collected++;
-			if (map[(p_pos->x) +x][(p_pos->y) +y] == 'E')
-				ft_error("You hitted an enemy !");
+			
 			
 			map[(p_pos->x) +x][(p_pos->y) +y] = 'P';
 			utils->moves++;

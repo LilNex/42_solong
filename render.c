@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:25:13 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/01 00:19:11 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/02 17:38:46 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void    render_block(t_solong *u, int *x, int *y)
 			render_animation(u->a_data->player), (*y*BLOCK_SIZE), (*x*BLOCK_SIZE));
 	else if (u->map->map[*x][*y] == 'E')
 		mlx_put_image_to_window(u->mlx, u->mlx_window,
-			render_animation(u->a_data->enemy), (*y*BLOCK_SIZE), (*x*BLOCK_SIZE));
+			render_animation(u->a_data->exit), (*y*BLOCK_SIZE), (*x*BLOCK_SIZE));
 	else if (u->map->map[*x][*y] == 'C')
 		mlx_put_image_to_window(u->mlx, u->mlx_window,
 			render_animation(u->a_data->player), (*y*BLOCK_SIZE), (*x*BLOCK_SIZE));
@@ -105,7 +105,7 @@ int render_window(t_solong *utils)
 	free(moves);
 	render_background(utils);
 	render_map(utils);
-	mlx_string_put(utils->mlx,utils->mlx_window, 64 ,64,255,utils->str_moves);
+	mlx_string_put(utils->mlx,utils->mlx_window, 64 ,64,0xFFFFFF,utils->str_moves);
 	return (1);
 }
 
