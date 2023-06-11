@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:22:54 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/05/30 14:06:17 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/11 21:45:11 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ t_list	*load_xpm_file(t_solong *utils, char *path)
 {
 	int		size;
 	void	*t;
-	puts("loading");
 	size = BLOCK_SIZE;
 	t = mlx_xpm_file_to_image(utils->mlx, path, &size, &size);
 	if (!t)
 		ft_error("Error while loading file\n");
+	printf("t : %p\n",t);
 	return (ft_lstnew(t));
 }
 

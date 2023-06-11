@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:25:13 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/02 17:38:46 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/11 21:51:34 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,20 @@
 
 void *render_animation(t_asset *u)
 {
-    // puts("test");
+	printf("add : %p\n",u);
+	printf("add last_used : %p\n",u->last_used);
 
 	if (u->last_used && u->last_used->next)
     {
+    	puts("test");
         u->last_used = u->last_used->next;
         return u->last_used->content;
     }
     else 
     {
         u->last_used = u->img;
+		printf("img : %p\n",u->img->content);
+		printf("img : %p\n",u->last_used->content);
         return u->img->content;
     }
 }

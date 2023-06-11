@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 23:11:55 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/01 15:29:39 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/11 21:49:08 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,32 @@ void init_window(t_solong *utils)
 	utils->a_data = ft_calloc(1, sizeof(t_assets_data));
 	utils->a_data->player = (t_asset *)ft_calloc(1, sizeof(t_asset));
 	utils->a_data->wall = (t_asset *)ft_calloc(1, sizeof(t_asset));
+	utils->a_data->collectible = (t_asset *)ft_calloc(1, sizeof(t_asset));
 	utils->a_data->background = (t_asset *)ft_calloc(1, sizeof(t_asset));
 	utils->a_data->enemy = (t_asset *)ft_calloc(1, sizeof(t_asset));
 	utils->a_data->exit = (t_asset *)ft_calloc(1, sizeof(t_asset));
-	utils->a_data->collectible = (t_asset *)ft_calloc(1, sizeof(t_asset));
 
-	ft_lstadd_back(&utils->a_data->player->img, load_xpm_file(utils, "./assets/images/char_1.xpm"));
+
+	
+	utils->a_data->player->img = (t_list *)ft_calloc(1, sizeof(t_list*));
+	// utils->a_data->player->img->next = NULL;
+	utils->a_data->wall->img = (t_list *)ft_calloc(1, sizeof(t_list*));
+	// utils->a_data->wall->img->next = NULL; 
+	utils->a_data->collectible->img = (t_list *)ft_calloc(1, sizeof(t_list*));
+	// utils->a_data->collectible->img->next = NULL; 
+	utils->a_data->background->img = (t_list *)ft_calloc(1, sizeof(t_list*));
+	// utils->a_data->background->img->next = NULL; 
+	utils->a_data->enemy->img = (t_list *)ft_calloc(1, sizeof(t_list*));
+	// utils->a_data->enemy->img->next = NULL; 
+	utils->a_data->exit->img = (t_list *)ft_calloc(1, sizeof(t_list*));
+	// utils->a_data->exit->img->next = NULL; 
+    puts("ft_callo");
+	// utils->a_data->collectible = (t_asset *)ft_calloc(1, sizeof(t_asset));
+    puts("adding first;");
+
+	ft_lstadd_back(&(utils->a_data->player->img), load_xpm_file(utils, "./assets/images/char_1.xpm"));
 	ft_lstadd_back(&utils->a_data->player->img, load_xpm_file(utils, "./assets/images/char_2.xpm"));
 	ft_lstadd_back(&utils->a_data->player->img, load_xpm_file(utils, "./assets/images/char_3.xpm"));
-    puts("t_asset");
 	
 	ft_lstadd_back(&utils->a_data->background->img, load_xpm_file(utils, "./assets/images/grass.xpm"));
 	ft_lstadd_back(&utils->a_data->wall->img, load_xpm_file(utils, "./assets/images/rock.xpm"));
@@ -48,5 +65,6 @@ void init_window(t_solong *utils)
 	// ft_lstadd_back(&utils->a_data->wall->img, load_xpm_file(utils, "./assets/images/wall.xpm"));
 	ft_lstadd_back(&utils->a_data->enemy->img, load_xpm_file(utils, "./assets/images/enemy.xpm"));
 	ft_lstadd_back(&utils->a_data->exit->img, load_xpm_file(utils, "./assets/images/exit.xpm"));
+    puts("end resources");
 
 }
