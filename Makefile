@@ -1,56 +1,40 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/26 17:56:23 by ichaiq            #+#    #+#              #
-#    Updated: 2023/05/30 01:12:27 by ichaiq           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-
 NAME = so_long
-HDRS = so_long.h
-SOURCES = so_long.c
-LIB = libft/libft.a
-GNL = gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c
-# GNL= gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c
-SRC = so_long.c init.c gameplay.c assets/assets.c assets/map.c assets/map_validator.c
-	
+GNL = includes/gnl/get_next_line_bonus.c includes/gnl/get_next_line_utils_bonus.c
+LIB_DIR = includes/libft
+LIB = $(LIB_DIR)/libft.a
+# SRC = so_long.c init.c gameplay.c assets/assets.c assets/map.c assets/map_validator.c
 
-OBJECTS = $(SRC:.c=.o)
+MANDATORY_SRCDIR = mandatory_src
+MANDATORY_SRC = $(shell find $(MANDATORY_SRCDIR) -type f -name '*.c')
+MANDATORY_HDRS = $(MANDATORY_SRCDIR)/$(NAME).h
+
+MANDATORY_OBJDIR = obj
+MANDATORY_OBJECTS = $(patsubst %.c, $(MANDATORY_OBJDIR)/%.o, $(MANDATORY_SRC))
 
 CC = cc
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror 
 
-all: $(NAME) so_long.h
+all: $(NAME) $(MANDATORY_HDRS)
 
 $(LIB):
-	make -C libft 
-	make clean
+	make -C $(LIB_DIR)
+	make -C $(LIB_DIR) clean
 
-$(NAME) : $(OBJECTS) $(LIB) $(GNL)
-	$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $^ -o $@ 
+$(NAME): $(MANDATORY_OBJECTS) $(LIB) $(GNL)
+	$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $^ -o $@
 
-
-# build: so_long.h
-# 	cd $(LIB) && make bonus
-# 	cp $(LIB)libft.a .
-# 	gcc $(SRC) $(GNL) libft.a $(CFLAGS) -o $(NAME)
-# 	# clear
-
-%.o: %.c $(LIB)
-	$(CC) -c $< -o $@ $(CFLAGS) 
-
+$(MANDATORY_OBJDIR)/%.o: %.c $(LIB)
+	@mkdir -p $(@D)
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
-	rm -f $(OBJECTS) $(BOBJECTS)
+	rm -rf $(MANDATORY_OBJDIR)
+	make clean -C $(LIB_DIR)
 
 fclean: clean
 	rm -f $(NAME)
+	make fclean -C $(LIB_DIR)
 
-re: fclean all bonus
+re: fclean all
 
-.PHONY: all bonus clean fclean re run 
+.PHONY: all clean fclean re
