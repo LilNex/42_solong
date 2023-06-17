@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 00:37:48 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 13:03:39 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/17 14:36:32 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ t_map	*init_map(int lines_count, t_solong *utils)
 
 	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
-		return (ft_error(utils, "Error while mallocing !"), NULL);
+		return (ft_error(utils, "Error while mallocing !", 1), NULL);
 	map->height = lines_count;
 	map->map = ft_calloc((map->height + 1), sizeof(char *));
+	map->_map = ft_calloc((map->height + 1), sizeof(char *));
 	map->count_c = 0;
 	map->count_p = 0;
 	map->count_e = 0;
@@ -35,7 +36,7 @@ int	get_count_lines(char *name, t_solong *utils)
 
 	fd = open(name, O_RDONLY);
 	if (fd < 0)
-		ft_error(utils, "Error while opening the map");
+		ft_error(utils, "Error while opening the map", 1);
 	nbr_lines = 0;
 	tmp = get_next_line(fd);
 	while (tmp)
@@ -81,9 +82,10 @@ void	load_lines(int fd, t_solong *utils)
 		if (i == 0)
 			utils->map->width = ft_strlen(tmp);
 		if (ft_strlen(tmp) != (size_t)utils->map->width)
-			ft_error(utils, "Dimension of map is invalid");
+			ft_error(utils, "Dimension of map is invalid", 1);
 		update_counts(tmp, utils->map);
-		utils->map->map[i++] = tmp;
+		utils->map->map[i] = tmp;
+		utils->map->_map[i++] = ft_strdup(tmp);
 		free_ptr(raw_line);
 		raw_line = get_next_line(fd);
 	}

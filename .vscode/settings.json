@@ -4,6 +4,8 @@
         "stddef.h": "c",
         "get_next_line_bonus.h": "c",
         "so_long.h": "c",
-        "typeinfo": "c"
-    }
+        "typeinfo": "c",
+        "sstream": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

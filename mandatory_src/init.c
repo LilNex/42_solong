@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 23:11:55 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 12:31:26 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/17 14:19:59 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	init_window(t_solong *utils)
 
 	utils->moves = 0;
 	utils->c_collected = 0;
+	utils->_c_collected = 0;
+	utils->exitflag = 0;
 	width = utils->map->width * BLOCK_SIZE;
 	height = utils->map->height * BLOCK_SIZE;
 	utils->mlx = mlx_init();

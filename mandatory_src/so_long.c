@@ -6,15 +6,21 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 17:59:15 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 12:56:34 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/17 14:40:20 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_error(t_solong *utils, char *s)
+int	ft_error(t_solong *utils, char *s, int error)
 {
-	ft_putstr_fd(s, STDOUT_FILENO);
+	if (error)
+	{
+		ft_putstr_fd("Error\n", STDERR_FILENO);
+		ft_putstr_fd(s, STDERR_FILENO);
+	}
+	else
+		ft_putstr_fd(s, STDOUT_FILENO);
 	clean_exit(utils);
 	exit(500);
 }
@@ -42,6 +48,6 @@ int	main(int ac, char **av)
 		clean_exit(s_utils);
 	}
 	else
-		ft_error(s_utils, "You should specify the map");
+		ft_error(s_utils, "You should specify the map", 1);
 	clean_exit(s_utils);
 }

@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 00:52:53 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 12:45:37 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/17 14:37:07 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,37 +33,8 @@ void	handle_exit(t_solong *utils, t_position *pos)
 	if (utils->map->count_c == utils->c_collected)
 	{
 		free_ptr(pos);
-		ft_error(utils, "You won!");
+		ft_error(utils, "You won!", 0);
 	}
-}
-
-t_position	*get_player_position(t_solong *utils)
-{
-	int			x;
-	int			y;
-	t_position	*pos;
-
-	x = 0;
-	y = 0;
-	pos = ft_calloc(1, sizeof(pos));
-	while (utils->map->map[x])
-	{
-		while (utils->map->map[x][y])
-		{
-			if (utils->map->map[x][y] == 'P')
-			{
-				pos->x = x;
-				pos->y = y;
-				return (pos);
-			}
-			y++;
-		}
-		x++;
-		y = 0;
-	}
-	pos->x = -1;
-	pos->y = -1;
-	return (pos);
 }
 
 void	move_player(t_solong *utils, int x, int y)
@@ -104,7 +75,7 @@ int	handle_press(int keycode, void *params)
 	else if (keycode == 125)
 		move_player(u, 1, 0);
 	else if (keycode == 53)
-		ft_error(u, "You exited the game.");
+		ft_error(u, "You exited the game.", 0);
 	render_window(u);
 	return (0);
 }

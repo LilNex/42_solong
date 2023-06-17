@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 15:49:07 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 13:02:33 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/17 14:40:44 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_solong{
 	void			*mlx_window;
 	int				c_collected;
 	int				_c_collected;
+	int				exitflag;
 	int				moves;
 	char			*str_moves;
 
@@ -75,25 +76,28 @@ typedef struct s_position{
 }				t_position;
 
 // LOADERS
-void	f(void);
-int		ft_error(t_solong *utils, char *s);
-void	*load_assets(t_solong *utils);
-void	load_map(char *name, t_solong *utils);
-int		get_count_lines(char *name, t_solong *utils);
-t_map	*init_map(int lines_count, t_solong *utils);
-void	load_lines(int fd, t_solong *utils);
-int		validate_map(t_map *map, t_solong *utils);
-int		check_line(const char *line, t_solong *utils);
-void	*load_xpm_file(t_solong *utils, char *path);
-void	init_window(t_solong *utils);
-void	render_window(t_solong *utils);
-int		handle_press(int keycode, void *params);
-void	render_background(t_solong *utils);
-void	render_map(t_solong *utils);
-void	load_assets_file(t_solong *utils);
-void	update_counter(t_solong *utils);
-void	free_map(t_solong *utils);
-void	free_assets(t_solong *utils);
-void	clean_exit(t_solong *utils);
+void		f(void);
+int			ft_error(t_solong *utils, char *s, int error);
+void		*load_assets(t_solong *utils);
+void		load_map(char *name, t_solong *utils);
+int			get_count_lines(char *name, t_solong *utils);
+t_map		*init_map(int lines_count, t_solong *utils);
+void		load_lines(int fd, t_solong *utils);
+int			validate_map(t_map *map, t_solong *utils);
+int			check_line(const char *line, t_solong *utils);
+void		*load_xpm_file(t_solong *utils, char *path);
+void		init_window(t_solong *utils);
+void		render_window(t_solong *utils);
+int			handle_press(int keycode, void *params);
+void		render_background(t_solong *utils);
+void		render_map(t_solong *utils);
+void		load_assets_file(t_solong *utils);
+void		update_counter(t_solong *utils);
+void		free_map(t_solong *utils);
+void		free_assets(t_solong *utils);
+void		clean_exit(t_solong *utils);
+int			has_valid_path(t_solong *u, char **map, int x, int y);
+t_position	*get_position(int x, int y);
+t_position	*get_player_position(t_solong *utils);
 
 #endif

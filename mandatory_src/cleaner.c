@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 22:35:06 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 12:31:46 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/17 14:32:19 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,19 @@ void	free_map(t_solong *utils)
 	map = utils->map->map;
 	while (map[x])
 		free(map[x++]);
+	x = 0;
+	map = utils->map->_map;
+	while (map[x])
+		free(map[x++]);
 	free(utils->map->map);
+	free(utils->map->_map);
 	free(utils->map);
 }
 
 void	free_mlx(t_solong *utils)
 {
-	mlx_destroy_window(utils->mlx, utils->mlx_window);
+	if (utils->mlx && utils->mlx_window)
+		mlx_destroy_window(utils->mlx, utils->mlx_window);
 }
 
 void	free_assets(t_solong *utils)
@@ -44,7 +50,8 @@ void	free_assets(t_solong *utils)
 void	clean_exit(t_solong *utils)
 {
 	free_map(utils);
-	free_assets(utils);
+	if (utils->a_data)
+		free_assets(utils);
 	free_mlx(utils);
 	free(utils);
 }
