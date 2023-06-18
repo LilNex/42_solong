@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 01:06:14 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 14:38:23 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/18 16:25:08 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,11 @@ int	validate_map(t_map *map, t_solong *utils)
 	if (!has_valid_path(utils, map->_map, player_pos->x, player_pos->y))
 		return (free_ptr(player_pos),
 			ft_error(utils, "Map has not a valid path", 1), 0);
+	if (map->height >= map->width)
+		return (free_ptr(player_pos),
+			ft_error(utils, "Map shloud be rectangular", 1));
+	if (map->width > 64 || map->height > 64)
+		return (free_ptr(player_pos),
+			ft_error(utils, "Dimensions of map are too big !", 1));
 	return (free_ptr(player_pos), 1);
 }

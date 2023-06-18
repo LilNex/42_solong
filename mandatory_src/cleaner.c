@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 22:35:06 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 14:32:19 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/18 01:15:33 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	free_assets(t_solong *utils)
 
 void	clean_exit(t_solong *utils)
 {
-	free_map(utils);
+	if (utils->map)
+		free_map(utils);
 	if (utils->a_data)
 		free_assets(utils);
 	free_mlx(utils);
