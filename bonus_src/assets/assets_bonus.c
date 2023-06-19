@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assets.c                                           :+:      :+:    :+:   */
+/*   assets_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:22:54 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/18 01:39:28 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:40:36 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 
 void	load_assets_file(t_solong *utils)
 {
@@ -19,9 +19,7 @@ void	load_assets_file(t_solong *utils)
 			"./images/collectible.xpm");
 	utils->a_data->backgroud = load_xpm_file(utils, "./images/grass.xpm");
 	utils->a_data->wall = load_xpm_file(utils, "./images/tree.xpm");
-	utils->a_data->enemy = load_xpm_file(utils, "./images/enemy.xpm");
-	utils->a_data->player = load_xpm_file(utils,
-			"./images/character_1.xpm");
+	load_player_assets(utils);
 	utils->a_data->exit = load_xpm_file(utils,
 			"./images/exit.xpm");
 }

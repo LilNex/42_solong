@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 23:11:55 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 14:19:59 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:39:51 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	init_window(t_solong *utils)
 {
@@ -29,9 +29,22 @@ void	init_window(t_solong *utils)
 	load_assets_file(utils);
 }
 
-void	render_window(t_solong *utils)
+int	render_window(t_solong *utils)
 {
+	char	*moves;
+	char	*tmp;
+
+	if (utils->str_moves)
+		free_ptr(utils->str_moves);
+	tmp = ft_strdup("Moves : ");
+	moves = ft_itoa(utils->moves);
+	utils->str_moves = ft_strjoin(tmp, moves);
+	free(tmp);
+	free(moves);
 	mlx_clear_window(utils->mlx, utils->mlx_window);
 	render_background(utils);
 	render_map(utils);
+	mlx_string_put(utils->mlx, utils->mlx_window, 64,
+		64, 0xFFFFFF, utils->str_moves);
+	return (1);
 }

@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 21:58:25 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 14:39:32 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:40:13 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
+
+void	*render_animation(t_animation *a)
+{
+	if (a->current >= a->len)
+		a->current = 0;
+	puts("test\n");
+	return (a->img[a->current++]);
+}
 
 void	render_background(t_solong *utils)
 {
@@ -41,13 +49,18 @@ void	render_block(t_solong *utils, int x, int y)
 			utils->a_data->wall, (y * BLOCK_SIZE), (x * BLOCK_SIZE));
 	else if (utils->map->map[x][y] == 'P')
 		mlx_put_image_to_window(utils->mlx, utils->mlx_window,
-			utils->a_data->player, (y * BLOCK_SIZE), (x * BLOCK_SIZE));
+			render_animation(utils->a_data->player),
+			(y * BLOCK_SIZE), (x * BLOCK_SIZE));
 	else if (utils->map->map[x][y] == 'E')
 		mlx_put_image_to_window(utils->mlx, utils->mlx_window,
 			utils->a_data->exit, (y * BLOCK_SIZE), (x * BLOCK_SIZE));
 	else if (utils->map->map[x][y] == 'C')
 		mlx_put_image_to_window(utils->mlx, utils->mlx_window,
 			utils->a_data->collectible, (y * BLOCK_SIZE), (x * BLOCK_SIZE));
+	else if (utils->map->map[x][y] == 'B')
+		mlx_put_image_to_window(utils->mlx, utils->mlx_window,
+			render_animation(utils->a_data->enemy),
+			(y * BLOCK_SIZE), (x * BLOCK_SIZE));
 }
 
 void	render_map(t_solong *utils)

@@ -6,11 +6,11 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 13:45:10 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 13:49:47 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:00:08 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 t_position	*get_position(int x, int y)
 {

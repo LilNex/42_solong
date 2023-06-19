@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   map_validator_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 01:06:14 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 14:38:23 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:08:48 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 
 int	has_valid_path(t_solong *u, char **map, int x, int y)
 {
@@ -44,7 +44,7 @@ int	check_line(const char *line, t_solong *utils)
 	while (i < ft_strlen(line))
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'P'
-			&& line[i] != 'E' && line[i] != 'C' && line[i] != '1')
+			&& line[i] != 'E' && line[i] != 'C' && line[i] != 'B')
 			return (ft_error(utils, "Map is invalid !", 1), 0);
 		i++;
 	}

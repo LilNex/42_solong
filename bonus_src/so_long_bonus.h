@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 15:49:07 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/17 14:40:44 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:43:23 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
+#ifndef SO_LONG_BONUS_H
 
-# define SO_LONG_H
+# define SO_LONG_BONUS_H
 
 # include <stddef.h>
 # include <stdio.h>
@@ -37,21 +37,27 @@ typedef struct s_map{
 	int		count_p;
 }				t_map;
 
-typedef struct s_asset{
-	void	*img;
-	char	*name;
-	int		w;
-	int		h;
-	char	*path;
-}				t_asset;
+// typedef struct s_asset{
+// 	void	*img;
+// 	char	*name;
+// 	int		w;
+// 	int		h;
+// 	char	*path;
+// }				t_asset;
+
+typedef struct s_animation{
+	void	**img;
+	int		len;
+	int		current;
+}				t_animation;
 
 typedef struct s_assets_data{
-	void	*wall;
-	void	*backgroud;
-	void	*player;
-	void	*exit;
-	void	*enemy;
-	void	*collectible;
+	void		*wall;
+	void		*backgroud;
+	t_animation	*player;
+	void		*exit;
+	t_animation	*enemy;
+	t_animation	*collectible;
 
 }				t_assets_data;
 
@@ -87,7 +93,7 @@ int			validate_map(t_map *map, t_solong *utils);
 int			check_line(const char *line, t_solong *utils);
 void		*load_xpm_file(t_solong *utils, char *path);
 void		init_window(t_solong *utils);
-void		render_window(t_solong *utils);
+int			render_window(t_solong *utils);
 int			handle_press(int keycode, void *params);
 void		render_background(t_solong *utils);
 void		render_map(t_solong *utils);
@@ -99,5 +105,6 @@ void		clean_exit(t_solong *utils);
 int			has_valid_path(t_solong *u, char **map, int x, int y);
 t_position	*get_position(int x, int y);
 t_position	*get_player_position(t_solong *utils);
+void		load_player_assets(t_solong *utils);
 
 #endif
