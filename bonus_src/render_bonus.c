@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 21:58:25 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/19 18:40:13 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:51:34 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	*render_animation(t_animation *a)
 {
 	if (a->current >= a->len)
 		a->current = 0;
-	puts("test\n");
 	return (a->img[a->current++]);
 }
 

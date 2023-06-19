@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 00:52:53 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/19 15:00:08 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/19 19:01:29 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ void	move_player(t_solong *utils, int x, int y)
 	{
 		if (map[p_pos->x + x][p_pos->y + y] == 'E')
 			handle_exit(utils, p_pos);
+		else if (map[p_pos->x + x][p_pos->y + y] == 'B')
+		{
+			free_ptr(p_pos);
+			ft_error(utils, "You hitted an enemy !", 0);
+		}
 		else if (map[p_pos->x + x][p_pos->y + y] != '1')
 		{
 			map[p_pos->x][p_pos->y] = '0';
