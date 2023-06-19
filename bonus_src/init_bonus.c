@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 23:11:55 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/19 18:39:51 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 00:17:50 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_window(t_solong *utils)
 	utils->c_collected = 0;
 	utils->_c_collected = 0;
 	utils->exitflag = 0;
+	utils->counter = 0;
 	width = utils->map->width * BLOCK_SIZE;
 	height = utils->map->height * BLOCK_SIZE;
 	utils->mlx = mlx_init();
@@ -34,6 +35,7 @@ int	render_window(t_solong *utils)
 	char	*moves;
 	char	*tmp;
 
+	do_actions(utils);
 	if (utils->str_moves)
 		free_ptr(utils->str_moves);
 	tmp = ft_strdup("Moves : ");

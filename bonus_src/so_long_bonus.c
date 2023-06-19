@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 17:59:15 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/19 18:42:07 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 00:17:40 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int ac, char **av)
 		init_window(s_utils);
 		render_window(s_utils);
 		mlx_key_hook(s_utils->mlx_window, handle_press, s_utils);
+		mlx_loop_hook(s_utils->mlx, render_window, s_utils);
 		mlx_loop(s_utils->mlx);
 		clean_exit(s_utils);
 	}

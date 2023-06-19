@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:09:33 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/19 18:41:56 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 00:12:15 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 
 void	load_player_animation(t_solong *utils)
 {
-	t_animation	*asset;
+	t_animation	*a;
 
-	asset = ft_calloc(1, sizeof(t_animation));
-	asset->img = ft_calloc(4, sizeof(void *));
-	asset->img[0] = load_xpm_file(utils,
-			"./images/character_1.xpm");
-	asset->img[1] = load_xpm_file(utils,
-			"./images/character_2.xpm");
-	asset->img[2] = load_xpm_file(utils,
-			"./images/character_3.xpm");
-	asset->len = 3;
-	utils->a_data->player = asset;
+	a = ft_calloc(1, sizeof(t_animation));
+	a->img = ft_calloc(9, sizeof(void *));
+	a->img[0] = load_xpm_file(utils, "./images/u1.xpm");
+	a->img[1] = load_xpm_file(utils, "./images/u2.xpm");
+	a->img[2] = load_xpm_file(utils, "./images/u3.xpm");
+	a->img[3] = load_xpm_file(utils, "./images/u4.xpm");
+	a->img[4] = load_xpm_file(utils, "./images/u5.xpm");
+	a->img[5] = load_xpm_file(utils, "./images/u6.xpm");
+	a->img[6] = load_xpm_file(utils, "./images/u7.xpm");
+	a->img[7] = load_xpm_file(utils, "./images/u8.xpm");
+	a->len = 3;
+	a->last = 0;
+	utils->a_data->player = a;
 }
 
 void	load_enemy_animation(t_solong *utils)
@@ -41,6 +44,7 @@ void	load_enemy_animation(t_solong *utils)
 	asset->img[2] = load_xpm_file(utils,
 			"./images/enemy_3.xpm");
 	asset->len = 3;
+	asset->last = 0;
 	utils->a_data->enemy = asset;
 }
 

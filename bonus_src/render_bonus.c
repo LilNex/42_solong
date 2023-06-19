@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 21:58:25 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/19 18:51:34 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 00:12:24 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 void	*render_animation(t_animation *a)
 {
-	if (a->current >= a->len)
+	if (a->current % 10 == 0)
+		a->last = a->current / 10;
+	if (a->last >= a->len)
+		a->last = 0;
+	if (a->current > a->len * 10)
 		a->current = 0;
-	return (a->img[a->current++]);
+	a->current++;
+	return (a->img[a->last]);
 }
 
 void	render_background(t_solong *utils)

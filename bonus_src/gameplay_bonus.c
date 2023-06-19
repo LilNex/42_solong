@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 00:52:53 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/19 19:01:29 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/19 23:34:25 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,5 @@ int	handle_press(int keycode, void *params)
 		move_player(u, 1, 0);
 	else if (keycode == 53)
 		ft_error(u, "You exited the game.", 0);
-	render_window(u);
 	return (0);
 }
