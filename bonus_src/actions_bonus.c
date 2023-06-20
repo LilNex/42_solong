@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 00:09:45 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/20 00:20:06 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 02:25:16 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	action_one(t_solong *utils)
 
 int	do_actions(t_solong *utils)
 {
-	if (utils->counter % 100 == 0)
+	if (utils->counter % (10 * SPEED_FACTOR) == 0)
 		action_one(utils);
 	utils->counter++;
 	if (utils->counter > 1000)

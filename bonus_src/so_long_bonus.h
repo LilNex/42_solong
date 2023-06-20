@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 15:49:07 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/20 00:48:19 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 02:25:11 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define BLOCK_SIZE 64
 # define GAME_NAME "so_long"
 # define RANGE_ENEMY 5
+# define SPEED_FACTOR 5
+# define HARD_MODE 0
 
 typedef struct s_map{
 	char	**map;
@@ -74,7 +76,7 @@ typedef struct s_solong{
 	int				exitflag;
 	int				moves;
 	char			*str_moves;
-	int 			counter;
+	int				counter;
 
 }				t_solong;
 
@@ -110,7 +112,7 @@ t_position	*get_position(int x, int y);
 t_position	*get_player_position(t_solong *utils);
 void		load_player_assets(t_solong *utils);
 int			do_actions(t_solong *utils);
-t_position	*search_nearest_enemy(t_position *p_pos, char **map);
+t_position	*search_nearest_enemy(t_solong *utils, t_position *p_pos);
 void		move_enemy(t_solong *utils, t_position	*p_pos);
 
 

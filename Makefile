@@ -21,7 +21,8 @@ BONUS_OBJDIR = obj
 BONUS_OBJECTS = $(patsubst %.c, $(BONUS_OBJDIR)/%.o, $(BONUS_SRC))
 
 CC = cc
-CFLAGS += -Wall -Wextra -Werror -fsanitize=address
+CFLAGS += -Wall -Wextra -Werror 
+# -fsanitize=address
 
 all: $(NAME) $(MANDATORY_HDRS)
 

@@ -6,15 +6,18 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:02:16 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/20 00:51:40 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 02:21:05 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int	is_position_enemy(char **map, int x, int y)
+int	is_position_enemy(t_solong *u, int x, int y)
 {
-	if (x < 0 || y < 0)
+	char	**map;
+
+	map = u->map->map;
+	if ((x < 0 || y < 0) || (x >= u->map->height || y >= u->map->width))
 		return (0);
 	if (map[x] && map[x][y] == 'B')
 		return (1);
@@ -28,7 +31,7 @@ int	is_position_enemy(char **map, int x, int y)
 		return (0);
 }
 
-t_position	*search_nearest_enemy(t_position *p_pos, char **map)
+t_position	*search_nearest_enemy(t_solong *utils, t_position *p_pos)
 {
 	int		x;
 	int		y;
@@ -39,13 +42,13 @@ t_position	*search_nearest_enemy(t_position *p_pos, char **map)
 	{
 		while (y < RANGE_ENEMY)
 		{
-			if (is_position_enemy(map, p_pos->x + x, p_pos->y + y))
+			if (is_position_enemy(utils, p_pos->x + x, p_pos->y + y))
 				return (get_position(p_pos->x + x, p_pos->y + y));
-			else if (is_position_enemy(map, p_pos->x - x, p_pos->y - y))
+			else if (is_position_enemy(utils, p_pos->x - x, p_pos->y - y))
 				return (get_position(p_pos->x - x, p_pos->y - y));
-			else if (is_position_enemy(map, p_pos->x - x, p_pos->y + y))
+			else if (is_position_enemy(utils, p_pos->x - x, p_pos->y + y))
 				return (get_position(p_pos->x - x, p_pos->y + y));
-			else if (is_position_enemy(map, p_pos->x + x, p_pos->y - y))
+			else if (is_position_enemy(utils, p_pos->x + x, p_pos->y - y))
 				return (get_position(p_pos->x + x, p_pos->y - y));
 			else
 				y++;
@@ -56,13 +59,48 @@ t_position	*search_nearest_enemy(t_position *p_pos, char **map)
 	return (NULL);
 }
 
+int	get_movement(int p, int e)
+{
+	if (p < e)
+		return (-1);
+	else
+		return (1);
+}
+
+void	move_enemy_to_player(t_solong *u, t_position *p_pos, t_position *e_pos)
+{
+	int		x;
+	int		y;
+	char	**map;
+
+	map = u->map->map;
+	x = get_movement(p_pos->x, e_pos->x);
+	y = get_movement(p_pos->y, e_pos->y);
+	if (map[e_pos->x + x][e_pos->y] == 'P'
+		|| map[e_pos->x][e_pos->y + y] == 'P')
+		ft_error(u, "You loosed !\nThe enemy hitted you !", 0);
+	if (map[e_pos->x + x][e_pos->y] == '0')
+	{
+		map[e_pos->x][e_pos->y] = '0';
+		map[e_pos->x + x][e_pos->y] = 'B';
+	}
+	else if (map[e_pos->x][e_pos->y + y] == '0')
+	{
+		map[e_pos->x][e_pos->y] = '0';
+		map[e_pos->x][e_pos->y + y] = 'B';
+	}
+}
+
 void	move_enemy(t_solong *utils, t_position	*p_pos)
 {
 	t_position	*e_pos;
 
-	e_pos = search_nearest_enemy(p_pos, utils->map->map);
+	e_pos = search_nearest_enemy(utils, p_pos);
 	if (e_pos)
 	{
-		printf("ENEMY | x : %d; y : %d\n",e_pos->x, e_pos->y);
+		printf("ENEMY | x : %d; y : %d\n", e_pos->x, e_pos->y);
+		move_enemy_to_player(utils, p_pos, e_pos);
+		free_ptr(e_pos);
 	}
+	free_ptr(p_pos);
 }
