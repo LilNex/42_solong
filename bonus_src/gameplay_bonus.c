@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 00:52:53 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/20 01:50:34 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 17:17:34 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	move_player(t_solong *utils, int x, int y)
 				utils->c_collected++;
 			map[p_pos->x + x][p_pos->y + y] = 'P';
 			utils->moves++;
-			update_counter(utils);
 		}
 	}
 	free_ptr(p_pos);

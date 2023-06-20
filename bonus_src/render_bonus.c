@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 21:58:25 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/20 00:12:24 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 17:08:30 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	render_block(t_solong *utils, int x, int y)
 			utils->a_data->exit, (y * BLOCK_SIZE), (x * BLOCK_SIZE));
 	else if (utils->map->map[x][y] == 'C')
 		mlx_put_image_to_window(utils->mlx, utils->mlx_window,
-			utils->a_data->collectible, (y * BLOCK_SIZE), (x * BLOCK_SIZE));
+			render_animation(utils->a_data->collectible),
+			(y * BLOCK_SIZE), (x * BLOCK_SIZE));
 	else if (utils->map->map[x][y] == 'B')
 		mlx_put_image_to_window(utils->mlx, utils->mlx_window,
 			render_animation(utils->a_data->enemy),

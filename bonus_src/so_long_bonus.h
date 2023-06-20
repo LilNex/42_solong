@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 15:49:07 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/20 02:25:11 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 16:57:07 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,6 @@ typedef struct s_map{
 	int		count_e;
 	int		count_p;
 }				t_map;
-
-// typedef struct s_asset{
-// 	void	*img;
-// 	char	*name;
-// 	int		w;
-// 	int		h;
-// 	char	*path;
-// }				t_asset;
 
 typedef struct s_animation{
 	void	**img;
@@ -114,6 +106,5 @@ void		load_player_assets(t_solong *utils);
 int			do_actions(t_solong *utils);
 t_position	*search_nearest_enemy(t_solong *utils, t_position *p_pos);
 void		move_enemy(t_solong *utils, t_position	*p_pos);
-
 
 #endif

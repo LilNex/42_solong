@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:09:33 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/20 00:12:15 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 17:06:58 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,28 @@ void	load_enemy_animation(t_solong *utils)
 	utils->a_data->enemy = asset;
 }
 
+void	load_collectible_asset(t_solong *utils)
+{
+	t_animation	*asset;
+
+	asset = ft_calloc(1, sizeof(t_animation));
+	asset->img = ft_calloc(4, sizeof(void *));
+	asset->img[0] = load_xpm_file(utils,
+			"./images/c1.xpm");
+	asset->img[1] = load_xpm_file(utils,
+			"./images/c2.xpm");
+	asset->img[2] = load_xpm_file(utils,
+			"./images/c3.xpm");
+	asset->img[3] = load_xpm_file(utils,
+			"./images/c4.xpm");
+	asset->len = 4;
+	asset->last = 0;
+	utils->a_data->collectible = asset;
+}
+
 void	load_player_assets(t_solong *utils)
 {
+	load_collectible_asset(utils);
 	load_enemy_animation(utils);
 	load_player_animation(utils);
 }

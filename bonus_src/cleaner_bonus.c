@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 22:35:06 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/19 18:38:49 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 17:16:50 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ void	free_animations(void *mlx_ptr, t_animation *anim)
 void	free_assets(t_solong *utils)
 {
 	mlx_destroy_image(utils->mlx, utils->a_data->backgroud);
-	mlx_destroy_image(utils->mlx, utils->a_data->collectible);
 	mlx_destroy_image(utils->mlx, utils->a_data->exit);
 	mlx_destroy_image(utils->mlx, utils->a_data->wall);
 	free_animations(utils->mlx, utils->a_data->player);
 	free_animations(utils->mlx, utils->a_data->enemy);
-	free_ptr(utils->a_data->enemy);
+	free_animations(utils->mlx, utils->a_data->collectible);
 	free_ptr(utils->a_data->player);
+	free_ptr(utils->a_data->enemy);
+	free_ptr(utils->a_data->collectible);
 	free_ptr(utils->a_data);
 }
 

@@ -15,7 +15,7 @@ MANDATORY_OBJECTS = $(patsubst %.c, $(MANDATORY_OBJDIR)/%.o, $(MANDATORY_SRC))
 
 BONUS_SRCDIR = bonus_src
 BONUS_SRC = $(shell find $(BONUS_SRCDIR) -type f -name '*.c')
-BONUS_HDRS = $(BONUS_SRCDIR)/$(NAME).h
+BONUS_HDRS = $(BONUS_SRCDIR)/$(NAME_BONUS).h
 
 BONUS_OBJDIR = obj
 BONUS_OBJECTS = $(patsubst %.c, $(BONUS_OBJDIR)/%.o, $(BONUS_SRC))
@@ -35,7 +35,7 @@ mandatory: $(NAME)
 $(NAME): $(MANDATORY_OBJECTS) $(LIB) $(GNL)
 	$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $^ -o $@
 
-$(MANDATORY_OBJDIR)/%.o: %.c $(LIB)
+$(MANDATORY_OBJDIR)/%.o: %.c $(LIB) $(MANDATORY_HDRS)
 	@mkdir -p $(@D)
 	$(CC) -c $< -o $@ $(CFLAGS)
 
@@ -44,7 +44,7 @@ bonus: $(NAME_BONUS)
 $(NAME_BONUS): $(BONUS_OBJECTS) $(LIB) $(GNL)
 	$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $^ -o $@
 
-$(BONUS_OBJDIR)/%.o: %.c $(LIB)
+$(BONUS_OBJDIR)/%.o: %.c $(LIB) $(BONUS_HDRS) 
 	@mkdir -p $(@D)
 	$(CC) -c $< -o $@ $(CFLAGS)
 

@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:02:16 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/20 02:21:05 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 17:04:14 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ t_position	*search_nearest_enemy(t_solong *utils, t_position *p_pos)
 
 int	get_movement(int p, int e)
 {
-	if (p < e)
+	if (p == e)
+		return (0);
+	else if (p < e)
 		return (-1);
 	else
 		return (1);
@@ -79,15 +81,19 @@ void	move_enemy_to_player(t_solong *u, t_position *p_pos, t_position *e_pos)
 	if (map[e_pos->x + x][e_pos->y] == 'P'
 		|| map[e_pos->x][e_pos->y + y] == 'P')
 		ft_error(u, "You loosed !\nThe enemy hitted you !", 0);
-	if (map[e_pos->x + x][e_pos->y] == '0')
-	{
-		map[e_pos->x][e_pos->y] = '0';
-		map[e_pos->x + x][e_pos->y] = 'B';
-	}
-	else if (map[e_pos->x][e_pos->y + y] == '0')
+	if (x == 0 && map[e_pos->x][e_pos->y + y] == '1')
+		x++;
+	else if (y == 0 && map[e_pos->x][e_pos->y + y] == '1')
+		y++;
+	if (map[e_pos->x][e_pos->y + y] == '0')
 	{
 		map[e_pos->x][e_pos->y] = '0';
 		map[e_pos->x][e_pos->y + y] = 'B';
+	}
+	else if (map[e_pos->x + x][e_pos->y] == '0')
+	{
+		map[e_pos->x][e_pos->y] = '0';
+		map[e_pos->x + x][e_pos->y] = 'B';
 	}
 }
 
@@ -98,7 +104,6 @@ void	move_enemy(t_solong *utils, t_position	*p_pos)
 	e_pos = search_nearest_enemy(utils, p_pos);
 	if (e_pos)
 	{
-		printf("ENEMY | x : %d; y : %d\n", e_pos->x, e_pos->y);
 		move_enemy_to_player(utils, p_pos, e_pos);
 		free_ptr(e_pos);
 	}

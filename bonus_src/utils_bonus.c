@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 13:45:10 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/19 15:00:08 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/20 16:56:57 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,14 @@ t_position	*get_player_position(t_solong *utils)
 		y = 0;
 	}
 	return (NULL);
+}
+
+int	do_actions(t_solong *utils)
+{
+	if (utils->counter % (10 * SPEED_FACTOR) == 0)
+		move_enemy(utils, get_player_position(utils));
+	utils->counter++;
+	if (utils->counter > 1000)
+		utils->counter = 0;
+	return (0);
 }
