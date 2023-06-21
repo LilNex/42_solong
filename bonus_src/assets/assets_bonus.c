@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:22:54 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/20 17:07:12 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/21 17:19:17 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	load_assets_file(t_solong *utils)
 	utils->a_data = ft_calloc(1, sizeof(t_assets_data));
 	utils->a_data->backgroud = load_xpm_file(utils, "./images/grass.xpm");
 	utils->a_data->wall = load_xpm_file(utils, "./images/tree.xpm");
-	load_player_assets(utils);
+	load_anims_assets(utils);
 	utils->a_data->exit = load_xpm_file(utils,
 			"./images/exit.xpm");
 }

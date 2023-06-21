@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 01:06:14 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/19 18:08:48 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/21 17:05:28 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	has_valid_path(t_solong *u, char **map, int x, int y)
 	if (map[x][y] == '1' || map[x][y] == 'E')
 		return (1);
 	map[x][y] = '1';
-	if (map[x + 1][y] != '1')
+	if (map[x + 1][y] != '1' && map[x + 1][y] != 'B')
 		has_valid_path(u, map, x + 1, y);
-	if (map[x - 1][y] != '1')
+	if (map[x - 1][y] != '1' && map[x - 1][y] != 'B')
 		has_valid_path(u, map, x - 1, y);
-	if (map[x][y + 1] != '1')
+	if (map[x][y + 1] != '1' && map[x][y + 1] != 'B')
 		has_valid_path(u, map, x, y + 1);
-	if (map[x][y - 1] != '1')
+	if (map[x][y - 1] != '1' && map[x][y - 1] != 'B')
 		has_valid_path(u, map, x, y - 1);
 	if (u->exitflag && u->_c_collected == u->map->count_c)
 		return (1);

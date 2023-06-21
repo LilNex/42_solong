@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 17:59:15 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/20 01:13:30 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/21 17:21:10 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_error(t_solong *utils, char *s, int error)
 	else
 		ft_putstr_fd(s, STDOUT_FILENO);
 	clean_exit(utils);
-	exit(500);
+	exit(0);
 }
 
 void	f(void)

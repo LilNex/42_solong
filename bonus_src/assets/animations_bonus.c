@@ -6,7 +6,7 @@
 /*   By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:09:33 by ichaiq            #+#    #+#             */
-/*   Updated: 2023/06/20 17:06:58 by ichaiq           ###   ########.fr       */
+/*   Updated: 2023/06/21 17:18:46 by ichaiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	load_collectible_asset(t_solong *utils)
 	utils->a_data->collectible = asset;
 }
 
-void	load_player_assets(t_solong *utils)
+void	load_anims_assets(t_solong *utils)
 {
 	load_collectible_asset(utils);
 	load_enemy_animation(utils);
