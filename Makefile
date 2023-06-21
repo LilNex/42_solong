@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ichaiq <ichaiq@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/06/21 16:31:59 by ichaiq            #+#    #+#              #
+#    Updated: 2023/06/21 17:36:36 by ichaiq           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = so_long
 NAME_BONUS = so_long_bonus
 
@@ -38,15 +50,18 @@ $(NAME): $(MANDATORY_OBJECTS) $(LIB) $(GNL)
 $(MANDATORY_OBJDIR)/%.o: %.c $(LIB) $(MANDATORY_HDRS)
 	@mkdir -p $(@D)
 	$(CC) -c $< -o $@ $(CFLAGS)
+$(MANDATORY_OBJECTS) : $(MANDATORY_HDRS)
 
 bonus: $(NAME_BONUS)
 
 $(NAME_BONUS): $(BONUS_OBJECTS) $(LIB) $(GNL)
 	$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $^ -o $@
 
-$(BONUS_OBJDIR)/%.o: %.c $(LIB) $(BONUS_HDRS) 
+$(BONUS_OBJDIR)/%.o: %.c $(LIB)  $(BONUS_HDRS) 
 	@mkdir -p $(@D)
 	$(CC) -c $< -o $@ $(CFLAGS)
+
+$(BONUS_OBJECTS):$(BONUS_HDRS)
 
 clean:
 	rm -rf $(MANDATORY_OBJDIR)
